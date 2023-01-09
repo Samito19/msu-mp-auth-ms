@@ -7,7 +7,7 @@ import (
 )
 
 func CreateConnection() *gorm.DB {
-	dsn := "root:toor@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:toor@tcp(127.0.0.1:3306)/msu-marketplace-db?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	CheckError(err)
 	return db

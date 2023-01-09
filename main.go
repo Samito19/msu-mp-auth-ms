@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -25,5 +24,5 @@ func handleAuthentication(w http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 	json.Unmarshal(credentials, &user)
-	fmt.Println(user.EmailAddress)
+
 }

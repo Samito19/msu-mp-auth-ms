@@ -6,8 +6,10 @@ import (
 	"net/http"
 
 	"github.com/Samito19/msu-mp-auth-ms/database"
-	. "github.com/Samito19/msu-mp-auth-ms/database/models"
 	"github.com/Samito19/msu-mp-auth-ms/encryption"
+	"github.com/google/uuid"
+
+	. "github.com/Samito19/msu-mp-auth-ms/database/models"
 	. "github.com/Samito19/msu-mp-auth-ms/errorHandlers"
 )
 
@@ -19,6 +21,10 @@ func CreateUser(w http.ResponseWriter, req *http.Request) {
 	credentials, reqBodyErr := ioutil.ReadAll(req.Body)
 	CheckError(reqBodyErr)
 	json.Unmarshal(credentials, &user)
+
+	//generate UUID for the user
+	id := uuid.New()
+	user.Uuid = id
 
 	//Encrypt user data
 	hashedPassword, hashErr := encryption.HashPassword(user.Password)

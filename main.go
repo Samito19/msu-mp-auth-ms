@@ -1,11 +1,10 @@
 package main
 
 import (
-	"encoding/json"
-	"io/ioutil"
 	"net/http"
 
-	. "github.com/Samito19/msu-mp-auth-ms/user"
+	. "github.com/Samito19/msu-mp-auth-ms/errorHandlers"
+	. "github.com/Samito19/msu-mp-auth-ms/routes"
 )
 
 func main() {
@@ -14,15 +13,5 @@ func main() {
 }
 
 func functionsHandler() {
-	http.HandleFunc("/authenticate", handleAuthentication)
-}
-
-func handleAuthentication(w http.ResponseWriter, req *http.Request) {
-	var user User
-	credentials, err := ioutil.ReadAll(req.Body)
-	if err != nil {
-		panic(err)
-	}
-	json.Unmarshal(credentials, &user)
-
+	http.HandleFunc("/createUser", MakeRouteHandler(CreateUser))
 }

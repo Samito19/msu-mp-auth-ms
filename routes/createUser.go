@@ -18,9 +18,9 @@ func CreateUser(w http.ResponseWriter, req *http.Request) {
 
 	//Receive user data
 	var user User
-	credentials, reqBodyErr := ioutil.ReadAll(req.Body)
+	userData, reqBodyErr := ioutil.ReadAll(req.Body)
 	CheckError(reqBodyErr)
-	json.Unmarshal(credentials, &user)
+	json.Unmarshal(userData, &user)
 
 	//generate UUID for the user
 	id := uuid.New()

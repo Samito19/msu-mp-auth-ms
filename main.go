@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	. "github.com/Samito19/msu-mp-auth-ms/errorHandlers"
-	. "github.com/Samito19/msu-mp-auth-ms/routes"
+	"github.com/Samito19/msu-mp-auth-ms/routes"
 )
 
 func main() {
@@ -13,5 +13,7 @@ func main() {
 }
 
 func functionsHandler() {
-	http.HandleFunc("/createUser", MakeRouteHandler(CreateUser))
+	http.HandleFunc("/createUser", MakeRouteHandler(routes.CreateUser))
+	http.HandleFunc("/authenticateUser", MakeRouteHandler(routes.AuthenticateUser))
+
 }

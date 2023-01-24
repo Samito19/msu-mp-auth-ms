@@ -3,6 +3,8 @@ package errorhandlers
 import (
 	"log"
 	"net/http"
+
+	. "github.com/Samito19/msu-mp-auth-ms/cors"
 )
 
 func CheckError(err error) {
@@ -18,6 +20,11 @@ func MakeRouteHandler(function http.HandlerFunc) http.HandlerFunc {
 				log.Println(err)
 			}
 		}()
-		function(w, r)
+		EnableCors(w, r)
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+		} else {
+			function(w, r)
+		}
 	}
 }
